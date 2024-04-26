@@ -5,7 +5,7 @@ import request from 'supertest'
 
 describe('endpoints', () => {
 
-  it('should connect with server and recieve code 200', async() => {
+  it('should connect with server and recieve code 200', async () => {
 
     const response = await request(app).post("/convert").send({
       value: 1000,
@@ -16,7 +16,7 @@ describe('endpoints', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  it('should recieve error messsage if body is missing', async() => {
+  it('should recieve error messsage if body is missing', async () => {
 
     const response = await request(app).post("/convert").send({
       value: 1000,
@@ -25,7 +25,7 @@ describe('endpoints', () => {
     expect(response.statusCode).toBe(400)
   })
 
-  it('should recieve error messsage if currency does not exist', async() => {
+  it('should recieve error messsage if currency does not exist', async () => {
 
     const response = await request(app).post("/convert").send({
       value: 1000,
@@ -34,12 +34,12 @@ describe('endpoints', () => {
     })
 
     const message = JSON.parse(response.text).Error
-    
+
     expect(message).toBe("Currency does not exist")
     expect(response.statusCode).toBe(400)
   })
 
-  it('should recieve correct exchange rate', async() => {
+  it('should recieve correct exchange rate', async () => {
 
     const value = 1000
     const from = "USD"
@@ -50,7 +50,7 @@ describe('endpoints', () => {
       from,
       to
     })
-    
+
     const rate = JSON.parse(response.text).value
 
     expect(rate).toBeGreaterThan(0)

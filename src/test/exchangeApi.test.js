@@ -1,7 +1,6 @@
+import exchangeApi from '../utils/exchangeApi.js'
 
 // test excahange api enpoint
-
-import exchangeApi from '../utils/exchangeApi.js'
 
 describe('api', () => {
 
