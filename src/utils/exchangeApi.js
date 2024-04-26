@@ -1,6 +1,6 @@
 import 'dotenv/config'
 
-export default exchangeApi = async () => {
+export default async () => {
 
   const url = `https://v6.exchangerate-api.com/v6/${process.env.EXCHANGE_API_KEY}/latest/USD`
 
