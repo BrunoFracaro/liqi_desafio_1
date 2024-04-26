@@ -39,6 +39,21 @@ describe('endpoints', () => {
     expect(response.statusCode).toBe(400)
   })
 
-  it.todo('should recieve correct exchange rate')
+  it('should recieve correct exchange rate', async() => {
+
+    const value = 1000
+    const from = "USD"
+    const to = "BRL"
+
+    const response = await request(app).post("/convert").send({
+      value,
+      from,
+      to
+    })
+    
+    const rate = JSON.parse(response.text).value
+
+    expect(rate).toBeGreaterThan(0)
+  })
 
 })

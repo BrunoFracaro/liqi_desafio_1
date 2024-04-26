@@ -1,5 +1,6 @@
 import { Router } from "express";
 import exchangeApi from "./utils/exchangeApi.js";
+import conversionRate from "./utils/conversionRate.js";
 
 const routes = Router();
 
@@ -23,9 +24,10 @@ routes.post("/convert", async (req, res) => {
     return
   }
 
-  console.log({ fromRate, toRate })
+  const finalValue = conversionRate(value, fromRate, toRate)
 
   res.statusCode = 200
+  res.send({ value: finalValue })
   res.end()
 });
 
