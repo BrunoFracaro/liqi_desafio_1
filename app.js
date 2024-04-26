@@ -1,12 +1,12 @@
 import express from 'express';
 import 'dotenv/config'
 
+import routes from './src/routes.js';
+
 const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(routes)
 
 export default app;
