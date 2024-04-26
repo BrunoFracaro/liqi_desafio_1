@@ -1,16 +1,27 @@
 
 // test excahange api enpoint
 
+import exchangeApi from '../utils/exchangeApi.js'
+
 describe('api', () => {
 
-  it('should be ok', () => {
-    expect(true).toBe(true);
-  });
+  it('should be able to reach exchange api', async () => {
+    const response = await exchangeApi()
 
-  it.todo('should be able to reach exchange api')
+    expect(response.result).toBe('success')
+  })
 
-  it.todo('should be able to get value of REAIS')
+  it('should be able to get value of REAIS', async () => {
+    const response = await exchangeApi()
 
-  it.todo('should be able to get value of currency determined by user')
+    expect(response.conversion_rates.BRL).toBeGreaterThan(0)
+  })
+
+  it('should be able to get value of currency determined by user', async () => {
+    const response = await exchangeApi()
+    const currency = 'AED'
+
+    expect(response.conversion_rates[currency]).toBeGreaterThan(0)
+  })
 
 })
