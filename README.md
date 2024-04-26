@@ -25,9 +25,11 @@ Supertest: Versão 7.0.0
 - Certifique-se que você tem o node instalado na sua máquina
 - Clone o repositório
 - Instale as dependências com `npm install`
+- Você precisará de uma chave da API "https://www.exchangerate-api.com/"
 
 ## Como Utilizar
 
+- Crie um arquivo chamado `.env`, e adicione a chave na variável `EXCHANGE_API_KEY=$minha_chave$`, substituindo `$minha_chave$` pela sua chave.
 - Inicie a aplicação com `npm run dev`
 - Os requests devem ser enviados para a rota **localhost:4000/convert**
 - O request deve ter um body no seguinte formato JSON
