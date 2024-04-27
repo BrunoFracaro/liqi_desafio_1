@@ -12,6 +12,10 @@
  */
 
 export const lambdaHandler = async (event, context) => {
+  
+  console.log('pass function triggered');
+
+  console.log(event);
 
   for (const record of event.Records) {
 
