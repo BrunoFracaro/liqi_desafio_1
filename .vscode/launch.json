@@ -25,8 +25,8 @@
         "logicalId": "SyncFunctionFunction"
       },
       "api": {
-        "path": "/syncFunctionEvent",
-        "httpMethod": "get",
+        "path": "/createUser",
+        "httpMethod": "post",
         "payload": {
           "json": {}
         }

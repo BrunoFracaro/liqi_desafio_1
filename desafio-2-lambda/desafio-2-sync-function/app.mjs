@@ -12,13 +12,13 @@
  */
 
 export const lambdaHandler = async (event, context) => {
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: 'hello sync function',
-      })
-    };
 
-    return response;
+  const parsedBody = JSON.parse(event.body);
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify(parsedBody)
   };
-  
+
+  return response;
+};
