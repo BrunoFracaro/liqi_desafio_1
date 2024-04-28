@@ -1,4 +1,9 @@
 {
+  "Records": [
+    {
+    "body": "{\"message\": \"hello world\"}"
+    }
+  ],
   "body": "{\"message\": \"hello world\"}",
   "resource": "/{proxy+}",
   "path": "/path/to/resource",

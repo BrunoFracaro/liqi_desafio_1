@@ -14,7 +14,7 @@ Resources:
       QueueName: 'SQSQueue'
 
   PassAsyncFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: pass-function/
       Handler: app.lambdaHandler
@@ -26,3 +26,11 @@ Resources:
           Type: SQS
           Properties:
             Queue: !GetAtt SQSMiddleware.Arn
+      Policies:
+        - EventBridgePutEventsPolicy:
+            EventBusName: !Ref RecieveEventBus
+
+  RecieveEventBus:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: 'RecieveEventBus'
