@@ -1,49 +1,40 @@
 # Project Challenge Liqi
 
-Opção Escolhida: 2
+Desafio 2
 
 ## Objetivos
 
-- Criar API REST
-- Consumir API de cotação de moedas "https://www.exchangerate-api.com/"
-- Realizar cambio de valores
-- Criar endpoint para receber especificação de quantidade, moeda de origem, moeda de destino
-- Calcular e retornar o valor convertido
+- Primeira parte: Criar uma função Lambda acionada através da API Gateway, em um POST na rota createUser. A função Lambda deve retornar à API Gateway o mesmo body da requisição.
+- Segunda parte: Criar um serviço assíncrono com SQS, Lambda e EventBridge. A função Lambda será acionada pelo SQS. Após acionada, a função enviará os mesmos dados para o EventBridge.
 
 ## Dependências
 
 NodeJS: Versão 20.12.1
 
-Express: Versão 4.19.2
+aws-cli: Versão 2.15.40
 
-Jest: Versão 29.7.0
-
-Supertest: Versão 7.0.0
+sam-cli: Versão 1.115
 
 ## Como Instalar
 
 - Certifique-se que você tem o node instalado na sua máquina
+- Certifique-se que você tem a cli da AWS instalada global na sua máquina
+- Certifique-se que você tem a cli da SAM instalada global na sua máquina
+- Tenha uma conta AWS e um usuário com permissões para executar os serviços SAM, Lambda, SQS, EventBRidge, CloudFormation, S3, IAM
 - Clone o repositório
-- Instale as dependências com `npm install`
-- Você precisará de uma chave da API "https://www.exchangerate-api.com/"
 
-## Como Utilizar
+## Como Utilizar sync application
 
-- Crie um arquivo chamado `.env`, e adicione a chave na variável `EXCHANGE_API_KEY=$minha_chave$`, substituindo `$minha_chave$` pela sua chave.
-- Inicie a aplicação com `npm run dev`
-- Os requests devem ser enviados para a rota **localhost:4000/convert**
-- O request deve ter um body no seguinte formato JSON
+- Entre na sua conta da AWS pelo terminal com `aws configure`
+- Para fazer deploy da primeira parte, entre na pasta **desafio-2-lambda** e utilize o comando `sam build`, e depois o comando `sam deploy`
+- Para utilizar, utilize uma API plataform como Postman e envie uma requisição para a URL disponibilizada pela API Gateway. O resultado retornado será o mesmo body JSON enviado na requisição
 
-`
-{
-  "value": 1000,
-  "from": "BRL",
-  "to": "USD"
-}
-`
+## Como Utilizar async application
+
+- Entre na sua conta da AWS pelo terminal com `aws configure`
+- Para fazer deploy da segunda parte, entre na pasta **desafio-2-async** e utilize o comando `sam build`, e depois o comando `sam deploy`
+- Para utilizar, comece criando uma *mensagem* na plataforma SQS do console AWS com um conteudo JSON. Através do serviço CloudWatch podemos ver a mensagem se perpetuando pela Lambda (através dos logs incluídos propositalmente no código) até o EventBridge.
 
 ## Notas
 
-Foram utilizadas as bibliotecas Jest e Supertest para desenvolvimento da aplicação com testes unitários. Fiz a opção por utilizar a sintaxe ES6 visto que essa é a recomendada para novas aplicações NodeJs, e a biblioteca Jest recentemente incluiu suporte para a sintaxe. Para tal, o script de teste no `package.json` deve incluir a flag `--experimental-vm-modules`. Também devemos incluir a key value `"type": "module"` no `package.json`.
-
-Para teste da aplicação com os 8 testes elaborados, execute o comando `npm run test` no terminal.
+A cli SAM permite você testar localmente, para tal, é nescessário uma plataforma de conteiners, como o Docker. Uma vez o Docker Desktop (ou outra distribuição de conteiners) instalada, execute o comando `sam build` e `sam local invoke -e events/event.json` para executar a aplicação localmente com um payload inical determinado no arquivo **event.json**
