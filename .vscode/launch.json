@@ -1,0 +1,74 @@
+{
+  "configurations": [
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "desafio-2-async:PassAsyncFunction (nodejs20.x)",
+      "invokeTarget": {
+        "target": "template",
+        "templatePath": "${workspaceFolder}/desafio-2-async/template.yaml",
+        "logicalId": "PassAsyncFunction"
+      },
+      "lambda": {
+        "payload": {},
+        "environmentVariables": {},
+        "runtime": "nodejs20.x"
+      }
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "API desafio-2-async:PassAsyncFunction (nodejs20.x)",
+      "invokeTarget": {
+        "target": "api",
+        "templatePath": "${workspaceFolder}/desafio-2-async/template.yaml",
+        "logicalId": "PassAsyncFunction"
+      },
+      "api": {
+        "path": "/hello",
+        "httpMethod": "get",
+        "payload": {
+          "json": {}
+        }
+      },
+      "lambda": {
+        "runtime": "nodejs20.x"
+      }
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "desafio-2-sync:SyncFunctionFunction (nodejs20.x)",
+      "invokeTarget": {
+        "target": "template",
+        "templatePath": "${workspaceFolder}/desafio-2-sync/template.yaml",
+        "logicalId": "SyncFunctionFunction"
+      },
+      "lambda": {
+        "payload": {},
+        "environmentVariables": {},
+        "runtime": "nodejs20.x"
+      }
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "API desafio-2-sync:SyncFunctionFunction (nodejs20.x)",
+      "invokeTarget": {
+        "target": "api",
+        "templatePath": "${workspaceFolder}/desafio-2-sync/template.yaml",
+        "logicalId": "SyncFunctionFunction"
+      },
+      "api": {
+        "path": "/createUser",
+        "httpMethod": "post",
+        "payload": {
+          "json": {}
+        }
+      },
+      "lambda": {
+        "runtime": "nodejs20.x"
+      }
+    }
+  ]
+}

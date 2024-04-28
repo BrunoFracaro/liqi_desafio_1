@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  desafio-2-sync
+
+  Sample SAM Template for desafio-2-sync
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  SyncFunctionFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: desafio-2-sync-function/
+      Handler: app.lambdaHandler
+      Runtime: nodejs20.x
+      Architectures:
+        - x86_64
+      Events:
+        SyncFunctionEvent:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /createUser
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  SyncFunctionApi:
+    Description: "API Gateway endpoint URL for Prod stage for Desafio 2 Sync function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/createUser/"
+  SyncFunctionFunction:
+    Description: "Sync Function Lambda Function ARN"
+    Value: !GetAtt SyncFunctionFunction.Arn
+  SyncFunctionFunctionIamRole:
+    Description: "Implicit IAM Role created for Sync Function function"
+    Value: !GetAtt SyncFunctionFunctionRole.Arn
