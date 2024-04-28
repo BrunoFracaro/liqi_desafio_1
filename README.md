@@ -26,7 +26,7 @@ sam-cli: Versão 1.115
 ## Como Utilizar sync application
 
 - Entre na sua conta da AWS pelo terminal com `aws configure`
-- Para fazer deploy da primeira parte, entre na pasta **desafio-2-lambda** e utilize o comando `sam build`, e depois o comando `sam deploy`
+- Para fazer deploy da primeira parte, entre na pasta **desafio-2-sync** e utilize o comando `sam build`, e depois o comando `sam deploy`
 - Para utilizar, utilize uma API plataform como Postman e envie uma requisição para a URL disponibilizada pela API Gateway. O resultado retornado será o mesmo body JSON enviado na requisição
 
 ## Como Utilizar async application

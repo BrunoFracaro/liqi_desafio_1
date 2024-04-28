@@ -38,10 +38,10 @@
     {
       "type": "aws-sam",
       "request": "direct-invoke",
-      "name": "desafio-2-lambda:SyncFunctionFunction (nodejs20.x)",
+      "name": "desafio-2-sync:SyncFunctionFunction (nodejs20.x)",
       "invokeTarget": {
         "target": "template",
-        "templatePath": "${workspaceFolder}/desafio-2-lambda/template.yaml",
+        "templatePath": "${workspaceFolder}/desafio-2-sync/template.yaml",
         "logicalId": "SyncFunctionFunction"
       },
       "lambda": {
@@ -53,10 +53,10 @@
     {
       "type": "aws-sam",
       "request": "direct-invoke",
-      "name": "API desafio-2-lambda:SyncFunctionFunction (nodejs20.x)",
+      "name": "API desafio-2-sync:SyncFunctionFunction (nodejs20.x)",
       "invokeTarget": {
         "target": "api",
-        "templatePath": "${workspaceFolder}/desafio-2-lambda/template.yaml",
+        "templatePath": "${workspaceFolder}/desafio-2-sync/template.yaml",
         "logicalId": "SyncFunctionFunction"
       },
       "api": {
