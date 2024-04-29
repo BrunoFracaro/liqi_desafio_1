@@ -4,8 +4,9 @@ Desafio 2
 
 ## Objetivos
 
-- Primeira parte: Criar uma função Lambda acionada através da API Gateway, em um POST na rota createUser. A função Lambda deve retornar à API Gateway o mesmo body da requisição.
-- Segunda parte: Criar um serviço assíncrono com SQS, Lambda e EventBridge. A função Lambda será acionada pelo SQS. Após acionada, a função enviará os mesmos dados para o EventBridge.
+- Primeira parte: Criar uma função Lambda acionada através da API Gateway, em um POST na rota createUser. A função Lambda deve retornar à API Gateway o mesmo body da requisição
+- Segunda parte: Criar um serviço assíncrono com SQS, Lambda e EventBridge. A função Lambda será acionada pelo SQS. Após acionada, a função enviará os mesmos dados para o EventBridge
+- Utilizar o AWS SAM para desenvolver as aplicações 
 
 ## Dependências
 
@@ -20,7 +21,7 @@ sam-cli: Versão 1.115
 - Certifique-se que você tem o node instalado na sua máquina
 - Certifique-se que você tem a cli da AWS instalada global na sua máquina
 - Certifique-se que você tem a cli da SAM instalada global na sua máquina
-- Tenha uma conta AWS e um usuário com permissões para executar os serviços SAM, Lambda, SQS, EventBRidge, CloudFormation, S3, IAM
+- Tenha uma conta AWS e um usuário com permissões para executar os serviços API Gateway, Lambda, SQS, EventBridge, CloudFormation, S3, IAM
 - Clone o repositório
 
 ## Como Utilizar sync application
@@ -28,12 +29,14 @@ sam-cli: Versão 1.115
 - Entre na sua conta da AWS pelo terminal com `aws configure`
 - Para fazer deploy da primeira parte, entre na pasta **desafio-2-sync** e utilize o comando `sam build`, e depois o comando `sam deploy`
 - Para utilizar, utilize uma API plataform como Postman e envie uma requisição para a URL disponibilizada pela API Gateway. O resultado retornado será o mesmo body JSON enviado na requisição
+- A aplicação ficará visível como uma Stack no painel CloudFormation do console da AWS sob o nome **desafio-2-sync**. Será feito o deploy de uma api da API Gateway e uma função NodeJs na plataforma Lambda.
 
 ## Como Utilizar async application
 
 - Entre na sua conta da AWS pelo terminal com `aws configure`
 - Para fazer deploy da segunda parte, entre na pasta **desafio-2-async** e utilize o comando `sam build`, e depois o comando `sam deploy`
-- Para utilizar, comece criando uma *mensagem* na plataforma SQS do console AWS com um conteudo JSON. Através do serviço CloudWatch podemos ver a mensagem se perpetuando pela Lambda (através dos logs incluídos propositalmente no código) até o EventBridge.
+- Para utilizar, comece criando uma *mensagem* na plataforma SQS do console AWS com um conteudo JSON. Através do serviço CloudWatch podemos ver a mensagem se perpetuando pela Lambda (através dos logs incluídos propositalmente no código) até o EventBridge
+- A Aplicação ficará visível como uma Stack no painel CloudFormation do console da AWS sob o nome **desafio-2-async**. Será feito o deploy de um Queue na plataforma SQS com o nome **SQSQueue**, de uma função NodeJS na plataforma Lambda, e de um EventBus na plataforma EventBridge.
 
 ## Notas
 
